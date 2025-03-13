@@ -13,14 +13,12 @@ def setup_tests(scale, shift):
     return new_map
 
 
-@handle_not_implemented
 def test_new_map():
     map = mp.new_map(5, 0.5, 7)
     assert map["capacity"] == 11
     assert map["size"] == 0
 
 
-@handle_not_implemented
 def test_new_map():
     map = mp.new_map(5, 0.5, 7)
     assert map["prime"] == 7
@@ -36,7 +34,6 @@ def test_new_map():
     assert map["prime"] == 109345121
 
 
-@handle_not_implemented
 def test_put():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "A")
@@ -44,7 +41,6 @@ def test_put():
     assert mp.get(map, 1) == "A"
 
 
-@handle_not_implemented
 def test_contains():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "A")
@@ -52,7 +48,6 @@ def test_contains():
     assert not mp.contains(map, 2)
 
 
-@handle_not_implemented
 def test_get():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "A")
@@ -60,7 +55,6 @@ def test_get():
     assert mp.get(map, 2) is None
 
 
-@handle_not_implemented
 def test_remove():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "A")
@@ -69,7 +63,6 @@ def test_remove():
     assert map["size"] == 0
 
 
-@handle_not_implemented
 def test_size():
     map = mp.new_map(5, 0.5, 7)
     assert mp.size(map) == 0
@@ -77,7 +70,6 @@ def test_size():
     assert mp.size(map) == 1
 
 
-@handle_not_implemented
 def test_is_empty():
     map = mp.new_map(5, 0.5, 7)
     assert mp.is_empty(map)
@@ -85,7 +77,6 @@ def test_is_empty():
     assert not mp.is_empty(map)
 
 
-@handle_not_implemented
 def test_key_set():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "A")
@@ -104,7 +95,6 @@ def test_key_set():
     assert lt.size(mp.key_set(mp.new_map(5, 0.5, 7))) == 0
 
 
-@handle_not_implemented
 def test_value_set():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "X")
@@ -123,7 +113,6 @@ def test_value_set():
     assert lt.size(mp.value_set(mp.new_map(5, 0.5, 7))) == 0
 
 
-@handle_not_implemented
 def test_find_slot():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "A")
@@ -151,7 +140,6 @@ def test_find_slot():
     assert pos >= 0
 
 
-@handle_not_implemented
 def test_is_available():
     map = mp.new_map(5, 0.5, 7)
     mp.put(map, 1, "A")
@@ -163,7 +151,6 @@ def test_is_available():
     assert mp.is_available(map["table"], mf.hash_value(map, 1))
 
 
-@handle_not_implemented
 def test_rehash():
     map = mp.new_map(5, 0.5, 7)
     for i in range(5):
