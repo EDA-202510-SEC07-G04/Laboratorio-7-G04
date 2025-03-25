@@ -13,7 +13,6 @@ def setup_tests(scale, shift):
     return new_map
 
 
-@handle_not_implemented
 def test_new_map():
     map = mp.new_map(5, 0.5, 7)
     assert isinstance(map, dict)
@@ -22,7 +21,6 @@ def test_new_map():
     assert map["size"] == 0
 
 
-@handle_not_implemented
 def test_put():
     map = setup_tests(None, None)
     mp.put(map, 1, 2)
@@ -31,7 +29,6 @@ def test_put():
     assert map["size"] == 1
 
 
-@handle_not_implemented
 def test_contains():
     map = setup_tests(None, None)
     # Caso: mapa vacío
@@ -43,7 +40,6 @@ def test_contains():
     assert not mp.contains(map, 2)
 
 
-@handle_not_implemented
 def test_get():
     map = setup_tests(None, None)
     mp.put(map, 1, 2)
@@ -58,7 +54,6 @@ def test_get():
     assert mp.get(new_map, 1) is None
 
 
-@handle_not_implemented
 def test_remove():
     map = setup_tests(1, 0)
     # Caso: mapa vacío
@@ -75,7 +70,6 @@ def test_remove():
     assert map["size"] == 1
 
 
-@handle_not_implemented
 def test_size():
     map = setup_tests(None, None)
     mp.put(map, 1, 2)
@@ -88,7 +82,7 @@ def test_size():
     assert mp.size(new_map) == 0
 
 
-@handle_not_implemented
+
 def test_is_empty():
     map = setup_tests(None, None)
     # Caso: mapa vacío
@@ -98,7 +92,6 @@ def test_is_empty():
     assert not mp.is_empty(map)
 
 
-@handle_not_implemented
 def test_key_set():
     map = setup_tests(None, None)
     # Caso: mapa vacío
@@ -115,7 +108,7 @@ def test_key_set():
     assert "b" in elements
 
 
-@handle_not_implemented
+
 def test_value_set():
     map = setup_tests(None, None)
     # Caso: mapa vacío
@@ -132,7 +125,6 @@ def test_value_set():
     assert 200 in elements
 
 
-@handle_not_implemented
 def test_rehash():
     map = mp.new_map(5, 0.5, 7)
     initial_capacity = map["capacity"]
