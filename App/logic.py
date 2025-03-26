@@ -31,8 +31,7 @@ import tracemalloc
 
 
 
-# TODO Realice la importación del mapa separate chaining
-from DataStructures.Map import map_linear_probing as lp
+from DataStructures.Map import map_separate_chaining as lp
 from DataStructures.List import array_list as al
 
 
@@ -280,8 +279,12 @@ def get_books_by_author(catalog, author_name):
     """
     Retorna los libros asociado al autor ingresado por párametro
     """
-    x = lp.get(catalog['books_by_authors'], author_name)
-    return x
+    books = lp.get(catalog['books_by_authors'], author_name)
+    
+    if books is None:
+        books = al.new_list()
+    
+    return author_name, books
 
 
 def get_books_by_tag(catalog, tag_name):
@@ -294,14 +297,20 @@ def get_books_by_tag(catalog, tag_name):
     de book_tags y finalmente relacionarlo con los datos completos del libro.
 
     """
-    tag_info = lp.get(catalog['tags'], tag_name)
-    x = None
-    if tag_info:
-        tag_id = tag_info['tag_id']
-        books_with_tag = lp.get(catalog['book_tags'], tag_id)
-        x = books_with_tag
+    libros_completos = al.new_list()
 
-    return x
+    tag = lp.get(catalog['tags'], tag_name)
+    if tag:
+        books_tag = lp.get(catalog['book_tags'], tag['tag_id'])
+
+        for datos in books_tag["elements"]:
+            libro_id = datos.get("book_id") or datos.get("goodreads_book_id")
+            libro = lp.get(catalog["books_by_id"], libro_id)
+
+            if libro:
+                al.add_last(libros_completos, libro)
+
+    return libros_completos
 
 
 def get_books_by_author_pub_year(catalog, author_name, pub_year):
