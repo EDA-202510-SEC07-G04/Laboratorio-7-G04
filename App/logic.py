@@ -29,11 +29,8 @@ import csv
 import time
 import tracemalloc
 
-
-
-from DataStructures.Map import map_linear_probing as lp
+from DataStructures.Map import map_separate_chaining as lp
 from DataStructures.List import array_list as al
-
 
 
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/GoodReads/'
