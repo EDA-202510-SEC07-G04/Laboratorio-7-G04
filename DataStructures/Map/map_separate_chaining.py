@@ -19,7 +19,7 @@ def new_map(num_elements, load_factor, prime=109345121):
         "size" : 0
            }
 
-    for i in range(num_elements):
+    for i in range(cap):
         al.add_last(map["table"], sl.new_list())
     
     return map
