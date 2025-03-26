@@ -125,22 +125,26 @@ def value_set(my_map):
     return values
 
 def rehash(my_map):
-    
-    old_table = my_map["table"]
-    new_capacity = mf.next_prime(my_map["capacity"] * 2)
-    new_mapp = new_map(new_capacity, my_map["limit_factor"], my_map["prime"])
-    
-    
-    for i in range(my_map["capacity"]):
-        bucket = al.get_element(old_table, i)
-        node = bucket["first"]
-        while node is not None:
-            key = me.get_key(node["info"])
-            value = me.get_value(node["info"])
-            put(new_mapp, key, value)
-            node = node["next"]
+    mapan = new_map(mf.next_prime(my_map["capacity"] * 2), my_map["limit_factor"])
 
-    return new_mapp
+    for i in range(al.size(my_map["table"])):
+        element = al.get_element(my_map["table"], i)
+        
+        if not sl.size(element) == 0:
+            nodo = element["first"]
+            
+            while nodo is not None:
+                mapan = put(mapan, nodo["info"]["key"], nodo["info"]["value"])
+                nodo = nodo["next"]
+
+    my_map["capacity"] = mapan["capacity"]
+    my_map["table"] = mapan["table"]
+    my_map["current_factor"] = mapan["current_factor"]
+    my_map["scale"] = mapan["scale"]
+    my_map["shift"] = mapan["shift"]
+    
+    return my_map
+
                
 def default_compare(key, element):
 
